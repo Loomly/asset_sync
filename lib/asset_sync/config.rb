@@ -14,6 +14,7 @@ module AssetSync
     attr_accessor :manifest
     attr_accessor :fail_silently
     attr_accessor :log_silently
+    attr_accessor :file_logger_path
     attr_accessor :always_upload
     attr_accessor :ignored_files
     attr_accessor :prefix
@@ -66,6 +67,7 @@ module AssetSync
       self.manifest = false
       self.fail_silently = false
       self.log_silently = true
+      self.file_logger_path = nil
       self.always_upload = []
       self.ignored_files = []
       self.custom_headers = {}

@@ -1,3 +1,5 @@
+require "logger"
+
 module AssetSync
 
   class << self
@@ -57,7 +59,15 @@ module AssetSync
     end
 
     def log(msg)
-      stdout.puts msg unless config.log_silently?
+      unless config.log_silently?
+        stdout.puts msg
+        file_logger.info msg if config.file_logger_path
+      end
+    end
+
+    def file_logger
+      return nil unless config.file_logger_path
+      @file_logger ||= Logger.new(config.file_logger_path)
     end
 
     def enabled?
